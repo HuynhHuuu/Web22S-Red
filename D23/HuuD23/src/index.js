@@ -6,8 +6,8 @@ const admin = require("firebase-admin");
 var serviceAccount = require("../key/admin-key.json");
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
+  credential: admin.credential.cert(serviceAccount),
+   });
 const firestore = admin.firestore();
 sever.use(bodyParser.json());
 sever.use(bodyParser.urlencoded({ extended: false }));
@@ -15,9 +15,9 @@ sever.use(cors());
 
 
 
-sever.get("/",(req,res)=>{
-    res.sendFile(__dirname + '/index.html');
-    //res.send("Hello World");
+sever.get("/get",(req,res)=>{
+    // res.sendFile(__dirname + '/index.html');
+    res.send({message:"Hello World"});
 });
 
 sever.get("/get/:name", async function (request, response) {
@@ -119,6 +119,6 @@ sever.post("/post", async (req, res) => {
     res.send(result);
   })
 
-sever.listen(3000,()=>{
+sever.listen(3000,'',()=>{
     console.log("Sever is starting");
 });
